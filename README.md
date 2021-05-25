@@ -18,11 +18,9 @@
         <p>- DateCreate: DataTime</p>
         <p>- DateUpdate: DataTime</p>
         <p>- Id_Origem: int</p>
-        <p>- Atualizar: int</p>
-        
-    </li>
-       <li> Realizar migration no banco de dados - Tabela Clientes</li>
-       <li> Retornar exibir objeto para o cliente.</li>
+        <p>- Atualizar: int</p>       
+       <p> Realizar migration no banco de dados - Tabela Clientes</p>
+       <p> Retornar exibir objeto para o cliente.</p>
     </li>
 </ul>  
 <hr/>
