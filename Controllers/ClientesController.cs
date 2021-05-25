@@ -26,6 +26,7 @@ namespace CadastroDeClientes.Controllers
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("IdCliente"))) return RedirectToAction("Login", "Home");
             return View(await _context.Clientes.ToListAsync());
         }
 
@@ -50,6 +51,10 @@ namespace CadastroDeClientes.Controllers
         // GET: Clientes/Create
         public IActionResult Create()
         {
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("IdCliente"))) return RedirectToAction("Login", "Home");
+
+            if (HttpContext.Session.GetString("Nivel_De_Acesso") != "1") return RedirectToAction("Index", "Clientes");
+
             return View();
         }
 
@@ -96,7 +101,9 @@ namespace CadastroDeClientes.Controllers
                 _context.Add(cliente);
                 await _context.SaveChangesAsync();
 
-                return Redirect("Index");
+                if(cadastroModel.Nivel_De_Acesso == 1)return RedirectToAction("PerfilAdmin" ,"Home");
+
+                return RedirectToAction("Perfil", "Home");
             }
 
 
@@ -107,6 +114,11 @@ namespace CadastroDeClientes.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             var cliente = await _context.Clientes.FindAsync(id);
+
+            if(cliente.Nivel_De_Acesso != 1)
+            {
+                return RedirectToAction("Perfil", "Home");
+            }
             if (id == null)
             {
                 return NotFound();

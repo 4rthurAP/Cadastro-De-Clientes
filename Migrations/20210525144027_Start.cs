@@ -18,10 +18,14 @@ namespace CadastroDeClientes.Migrations
                     Razao_Social = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Nome_Fantasia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Editar = table.Column<int>(type: "int", nullable: false),
+                    Adicionar = table.Column<int>(type: "int", nullable: false),
+                    Deletar = table.Column<int>(type: "int", nullable: false),
                     DataCreate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DataUpdate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DataUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Id_Origem = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -47,5 +47,11 @@ namespace CadastroDeClientes.ViewModel
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Preencha este campo")]
         public string ConfirmarSenha { get; set; }
+        public int Id_Origem { get; set; }
+        public int Editar { get; set; }
+
+        public int Adicionar { get; set; }
+
+        public int Deletar { get; set; }
     }
 }

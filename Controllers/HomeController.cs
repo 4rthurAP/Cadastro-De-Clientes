@@ -32,14 +32,21 @@ namespace CadastroDeClientes.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("IdCliente"))) return RedirectToAction(nameof(Perfil));
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("IdCliente")))
+            {
+                if(HttpContext.Session.GetString("Nivel_De_Acesso") == "1")
+                {
+                    RedirectToAction(nameof(PerfilAdmin));
+                }
+                else
+                {
+                    RedirectToAction(nameof(Perfil));
+                }
+            }
+                
             return View();
         }
-        public ActionResult LoginAdmin()
-        {
-            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("Nivel_De_Acesso"))) return RedirectToAction(nameof(PerfilAdmin));
-            return View();
-        }
+
         [HttpGet]
         public IActionResult Perfil()
         {
@@ -59,13 +66,16 @@ namespace CadastroDeClientes.Controllers
         }
         public IActionResult PerfilAdmin()
         {
-            if (String.IsNullOrEmpty(HttpContext.Session.GetString("IdCliente"))) return RedirectToAction(nameof(LoginAdmin));
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("IdCliente"))) 
+                if (HttpContext.Session.GetString("Nivel_De_Acesso") != "1") return RedirectToAction(nameof(Perfil));
 
             int id = int.Parse(HttpContext.Session.GetString("IdCliente"));
 
             Cliente cliente = _context.Clientes.Find(id);
             return View(cliente);
         }
+
+
         public IActionResult Privacy()
         {
             return View();
@@ -100,6 +110,7 @@ namespace CadastroDeClientes.Controllers
         //Deslogando o usuário - Remove as sessions existentes
         public void Logout()
         {
+
             HttpContext.Session.Remove("Nivel_De_Acesso");
             HttpContext.Session.Remove("NomeFantasia");
             HttpContext.Session.Remove("EmailCliente");
@@ -119,6 +130,10 @@ namespace CadastroDeClientes.Controllers
             HttpContext.Session.SetString("CNPJCliente", cliente.CNPJ);
             HttpContext.Session.SetString("TelefoneCliente", cliente.Telefone);
             HttpContext.Session.SetString("IdCliente", cliente.Id_Cliente.ToString());
+
+            HttpContext.Session.SetString("Adicionar", cliente.Adicionar.ToString());
+            HttpContext.Session.SetString("Editar", cliente.Editar.ToString());
+            HttpContext.Session.SetString("Excluir", cliente.Deletar.ToString());
         }
     }
 }

@@ -9,7 +9,7 @@
         <div class="perfil-content">
             <div class="perfil-box">
                 <div class="form-group title">
-                    <h1 class="text-center">Usuário logado</h1>
+                    <h1 class="text-center">Admin logado</h1>
                     <h5 class="text-center">Bem vindo @Model.Nome_Fantasia</h5>
                 </div>
                 <div class="form-group divSpaceMargin">
@@ -24,7 +24,9 @@
                 <div class="form-group divSpaceMargin">
                     <label class="control-label"><b>EMAIL: </b>@Model.Email</label>
                 </div>
-
+                <div class="form-group divSpaceMargin">
+                    <label class="control-label"><b>Nivel de Acesso: </b>Admin</label>
+                </div>
                 <div class="form-group divSpaceMargin text-center">
                     <a asp-action="Edit" asp-controller="Clientes" asp-route-id="@Model.Id_Cliente" type="button" class="btn btn-info editar-perfil">Editar Perfil</a>
                     <a class="btn btn-danger" asp-action="Logout">Deslogar</a>

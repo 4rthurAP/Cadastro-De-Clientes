@@ -1,7 +1,7 @@
 ﻿@model CadastroDeClientes.Models.Cliente
 
 @{ ViewData["Title"] = "Perfil";
-  
+    Layout = "_layoutLogado";
         }
 <div class="container">
     <div id="perfil" class="perfil">
@@ -23,7 +23,9 @@
                 <div class="form-group divSpaceMargin">
                     <label class="control-label"><b>EMAIL: </b>@Model.Email</label>
                 </div>
-
+                <div class="form-group divSpaceMargin">
+                    <label class="control-label"><b>Nivel de Acesso: </b>Cliente</label>
+                </div>
                 <div class="form-group divSpaceMargin text-center">
 
                     <a asp-action="Edit" asp-controller="Clientes" asp-route-id="@Model.Id_Cliente" type="button" class="btn btn-info editar-perfil">Editar Perfil</a>

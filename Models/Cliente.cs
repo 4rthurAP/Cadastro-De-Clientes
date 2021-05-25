@@ -13,6 +13,7 @@ namespace CadastroDeClientes.Models
         public int Id_Cliente { get; set; }
 
         public int Nivel_De_Acesso { get; set; }
+
         public string CNPJ { get; set; }
 
         public string Razao_Social { get; set; }
@@ -21,13 +22,22 @@ namespace CadastroDeClientes.Models
 
         public string Email { get; set; }
 
+        public string Telefone { get; set; }
+
         public string Senha { get; set; }
 
-        public string Telefone { get; set; }
+        public int Editar { get; set; }
+
+        public int Adicionar { get; set; }
+
+        public int Deletar { get; set; }
 
         public DateTime DataCreate { get; set; }
 
         public DateTime DataUpdate { get; set; }
+
+        public int Id_Origem { get; set; }
+
         public int VerifyPasswordStrong(string password)
         {
             int totalPoint = 0;
