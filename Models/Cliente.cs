@@ -11,17 +11,16 @@ namespace CadastroDeClientes.Models
     {
         [Key()]
         public int Id_Cliente { get; set; }
-
+        [Display(Name = "Nível de Acesso")]
         public int Nivel_De_Acesso { get; set; }
 
         public string CNPJ { get; set; }
-
+        [Display(Name = "Razão Social")]
         public string Razao_Social { get; set; }
-
+        [Display(Name = "Nome Fantasia")]
         public string Nome_Fantasia { get; set; }
-
         public string Email { get; set; }
-
+        
         public string Telefone { get; set; }
 
         public string Senha { get; set; }
