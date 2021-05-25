@@ -32,19 +32,20 @@ namespace CadastroDeClientes.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            //Verifica a session 
+            //<return>se true vai para o perfilAdmin ou Perfil, dependendo do nivel de acesso. se nao vai para a tela de login
             if (!String.IsNullOrEmpty(HttpContext.Session.GetString("IdCliente")))
             {
                 if(HttpContext.Session.GetString("Nivel_De_Acesso") == "1")
                 {
-                    RedirectToAction(nameof(PerfilAdmin));
+                    RedirectToAction("PerfilAdmin", "Home");
                 }
                 else
                 {
-                    RedirectToAction(nameof(Perfil));
+                    RedirectToAction("Perfil", "Home");
                 }
             }
-                
-            return View();
+                return View();
         }
 
         [HttpGet]
