@@ -145,8 +145,7 @@ namespace CadastroDeClientes.Controllers
             {
                 return NotFound();
             }
-            if(cliente.Nivel_De_Acesso == 1){
-
+            
                 if (ModelState.IsValid)
                 {
                     try
@@ -168,16 +167,6 @@ namespace CadastroDeClientes.Controllers
                     }
                     return RedirectToAction(nameof(Index));
                 }
-            }
-            else
-            {
-                 await _context.Clientes
-                                .Select(x => new Cliente()
-                                {
-                                    Email = x.Email
-                                })
-                .ToListAsync();
-            }
             return View(cliente);
         }
 
@@ -191,6 +180,11 @@ namespace CadastroDeClientes.Controllers
 
             var cliente = await _context.Clientes
                 .FirstOrDefaultAsync(m => m.Id_Cliente == id);
+            
+            if(cliente.Nivel_De_Acesso != 1)
+            {
+                return RedirectToAction("Perfil", "Home");
+            }
             if (cliente == null)
             {
                 return NotFound();
