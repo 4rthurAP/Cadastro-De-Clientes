@@ -20,7 +20,6 @@ namespace CadastroDeClientes.Models
         [Display(Name = "Nome Fantasia")]
         public string Nome_Fantasia { get; set; }
         public string Email { get; set; }
-        
         public string Telefone { get; set; }
 
         public string Senha { get; set; }

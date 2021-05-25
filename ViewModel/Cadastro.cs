@@ -37,16 +37,17 @@ namespace CadastroDeClientes.ViewModel
         [Required(ErrorMessage = "Preencha este campo")]
         public string Senha { get; set; }
 
+        [Display(Name = "Confirmar senha", Description = "Confirme sua senha")]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Preencha este campo")]
+        public string ConfirmarSenha { get; set; }
 
         [Display(Name = "Nivel de acesso", Description = "Nivel de acesso")]
         [Range(-1,2, ErrorMessage ="0 Para usuario e 1 para Admin")]
         [Required(ErrorMessage = "Preencha este campo")]
         public int Nivel_De_Acesso { get; set; }
 
-        [Display(Name = "Confirmar senha", Description = "Confirme sua senha")]
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Preencha este campo")]
-        public string ConfirmarSenha { get; set; }
+
         public int Id_Origem { get; set; }
         public int Editar { get; set; }
 
