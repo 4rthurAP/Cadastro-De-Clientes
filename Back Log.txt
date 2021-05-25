@@ -1,0 +1,20 @@
+1. Requisitos Funcionais:
+	a. Devem ser armazenados os seguintes dados:
+		i. Código do Cliente - numérico e sequencial
+		ii. CNPJ - numérico de 14 posições com formatação 00.000.000/0000-00
+		iii. Razão Social - alfanumérico com 60 caracteres
+		iv. Nome Fantasia - alfanumérico com 30 caracteres
+		v. Contato Principal - alfanumérico contendo o e-mail com 50 caracteres
+		vi. Telefone do Contato - numérico de 11 posições com formatação (00) 00000-
+		0000
+
+	-b. O sistema deve permitir manutenção completa do cadastro do cliente: Inclusão,
+	Alteração, Consulta e Exclusão (CRUD).
+	-c. A Consulta de Clientes deve apresentar o usuário (login) que cadastrou e o que fez a
+	última alteração, com data e hora de cada ação.
+
+2. Requisitos de Segurança
+	-a. O sistema precisa de um controle de acesso através de usuário e senha.
+	-b. O controle de acesso deve ser gerenciado pelo administrador da empresa.
+	-c. O controle de acesso deve permitir ao administrador, configurar o que cada usuário
+	pode acessar (Inclusão, Alteração, Exclusão) a consulta é permitida a todos.
