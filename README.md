@@ -16,9 +16,7 @@
         <p>- Email: string</p>
         <p>- Telefone: string</p>
         <p>- DateCreate: DataTime</p>
-        <p>- DateUpdate: DataTime</p>
-        <p>- Id_Origem: int</p>
-        <p>- Atualizar: int</p>       
+        <p>- DateUpdate: DataTime</p>    
        <p> Realizar migration no banco de dados - Tabela Clientes</p>
        <p> Retornar exibir objeto para o cliente.</p>
     </li>
