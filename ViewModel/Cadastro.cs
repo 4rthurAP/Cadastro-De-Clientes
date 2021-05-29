@@ -30,7 +30,7 @@ namespace CadastroDeClientes.ViewModel
         [StringLength(60, MinimumLength = 5, ErrorMessage = "O e-mail deve de 5 a 60 dígitos")]
         [Required(ErrorMessage = "Preencha este campo")]
         public string Email { get; set; }
-
+        
         [Display(Name = "Senha", Description = "Senha")]
         [DataType(DataType.Password)]
         [StringLength(20, MinimumLength = 8, ErrorMessage = "A senha deve ter de 8 a 20 dígitos")]
@@ -46,13 +46,5 @@ namespace CadastroDeClientes.ViewModel
         [Range(-1,2, ErrorMessage ="0 Para usuario e 1 para Admin")]
         [Required(ErrorMessage = "Preencha este campo")]
         public int Nivel_De_Acesso { get; set; }
-
-
-        public int Id_Origem { get; set; }
-        public int Editar { get; set; }
-
-        public int Adicionar { get; set; }
-
-        public int Deletar { get; set; }
     }
 }

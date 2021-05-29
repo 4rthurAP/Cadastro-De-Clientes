@@ -68,21 +68,21 @@ namespace CadastroDeClientes.Controllers
             var cliente = new Cliente();
             Cryptography cryptography = new Cryptography(MD5.Create());
 
-            //Verifica se email existe
+            // Verifica se email existe
             if (EmailUsuarioExiste(cadastroModel.Email)) ModelState.AddModelError("Email", "O e-mail inserido já cadastrado!");
 
-            //Verifica se o telefone existe
+            // Verifica se o telefone existe
             if (TelefoneUsuarioExiste(cadastroModel.Telefone)) ModelState.AddModelError("Telefone", "O telefone inserido já cadastrado!");
 
-            //Verifica se o CNPJ existe
+            // Verifica se o CNPJ existe
             if (CNPJUsuarioExiste(cadastroModel.CNPJ)) ModelState.AddModelError("CNPJ", "O CNPJ inserido já cadastrado!");
 
-            //Verifica se a senha a confirmação de senha são iguais
+            // Verifica se a senha a confirmação de senha são iguais
             if (!cryptography.HashVerify(cadastroModel.ConfirmarSenha, cadastroModel.Senha))
             {
                 ModelState.AddModelError("Senha", "As senhas não correspondem.");
             }
-            //Verifica força da senha
+            // Verifica força da senha
             else if (cliente.VerifyPasswordStrong(cadastroModel.Senha) < 3)
             {
                 ModelState.AddModelError("Senha", "A segurança da senha é baixa, tente outra");
@@ -115,7 +115,7 @@ namespace CadastroDeClientes.Controllers
         {
             var cliente = await _context.Clientes.FindAsync(id);
 
-            if(cliente.Nivel_De_Acesso != 1)
+            if(HttpContext.Session.GetString("Nivel_De_Acesso") != "1")
             {
                 return RedirectToAction("Perfil", "Home");
             }
@@ -181,10 +181,11 @@ namespace CadastroDeClientes.Controllers
             var cliente = await _context.Clientes
                 .FirstOrDefaultAsync(m => m.Id_Cliente == id);
             
-            if(cliente.Nivel_De_Acesso != 1)
+            if(cliente.Id_Cliente != 1)
             {
                 return RedirectToAction("Perfil", "Home");
             }
+
             if (cliente == null)
             {
                 return NotFound();
@@ -204,13 +205,13 @@ namespace CadastroDeClientes.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //Verifia se o Cliente Existe
+        // Verifia se o Cliente Existe
         private bool ClienteExists(int id)
         {
             return _context.Clientes.Any(e => e.Id_Cliente == id);
         }
 
-        //Verifica se o CNPJ já esta cadastrado
+        // Verifica se o CNPJ já esta cadastrado
         private bool CNPJUsuarioExiste(string cnpj)
         {
             if (String.IsNullOrEmpty(cnpj)) return false;
@@ -220,7 +221,7 @@ namespace CadastroDeClientes.Controllers
             return false;
         }
 
-        //Verifica se um email já esta cadastrado
+        // Verifica se um email já esta cadastrado
         private bool EmailUsuarioExiste(string email)
         {
             if (String.IsNullOrEmpty(email)) return false;
@@ -231,7 +232,7 @@ namespace CadastroDeClientes.Controllers
         }
 
 
-        //Verifica se o telefone já está cadastrado
+        // Verifica se o telefone já está cadastrado
         private bool TelefoneUsuarioExiste(string telefone)
         {
             if (String.IsNullOrEmpty(telefone)) return false;

@@ -24,17 +24,9 @@ namespace CadastroDeClientes.Models
 
         public string Senha { get; set; }
 
-        public int Editar { get; set; }
-
-        public int Adicionar { get; set; }
-
-        public int Deletar { get; set; }
-
         public DateTime DataCreate { get; set; }
 
         public DateTime DataUpdate { get; set; }
-
-        public int Id_Origem { get; set; }
 
         public int VerifyPasswordStrong(string password)
         {

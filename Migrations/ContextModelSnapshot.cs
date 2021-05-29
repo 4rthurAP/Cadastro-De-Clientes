@@ -26,9 +26,6 @@ namespace CadastroDeClientes.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Adicionar")
-                        .HasColumnType("int");
-
                     b.Property<string>("CNPJ")
                         .HasColumnType("nvarchar(max)");
 
@@ -38,17 +35,8 @@ namespace CadastroDeClientes.Migrations
                     b.Property<DateTime>("DataUpdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Deletar")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Editar")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Id_Origem")
-                        .HasColumnType("int");
 
                     b.Property<int>("Nivel_De_Acesso")
                         .HasColumnType("int");

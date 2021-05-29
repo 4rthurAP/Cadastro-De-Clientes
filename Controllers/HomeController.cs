@@ -38,19 +38,20 @@ namespace CadastroDeClientes.Controllers
             {
                 if(HttpContext.Session.GetString("Nivel_De_Acesso") == "1")
                 {
-                    RedirectToAction("PerfilAdmin", "Home");
+                   return RedirectToAction("PerfilAdmin", "Home");
                 }
                 else
                 {
-                    RedirectToAction("Perfil", "Home");
+                   return RedirectToAction("Perfil", "Home");
                 }
             }
-                return View();
+            return View();
         }
 
         [HttpGet]
         public IActionResult Perfil()
         {
+
             if (String.IsNullOrEmpty(HttpContext.Session.GetString("IdCliente")))return RedirectToAction(nameof(Login));
                 
             int id = int.Parse(HttpContext.Session.GetString("IdCliente"));
@@ -89,7 +90,7 @@ namespace CadastroDeClientes.Controllers
         }
 
 
-        //Efetuar o login do usuário
+        // Efetuar o login do usuário
         public IActionResult Login(string email, string senha)
         {
             Cryptography cryptography = new Cryptography(MD5.Create());
@@ -108,7 +109,7 @@ namespace CadastroDeClientes.Controllers
         }
 
 
-        //Deslogando o usuário - Remove as sessions existentes
+        // Deslogando o usuário - Remove as sessions existentes
         public void Logout()
         {
 
@@ -122,7 +123,7 @@ namespace CadastroDeClientes.Controllers
         }
 
 
-        //Inicia a session
+        // Inicia a session
         private void StartSessionLogin(Cliente cliente)
         {
             HttpContext.Session.SetString("Nivel_De_Acesso", (cliente.Nivel_De_Acesso).ToString());
@@ -131,10 +132,6 @@ namespace CadastroDeClientes.Controllers
             HttpContext.Session.SetString("CNPJCliente", cliente.CNPJ);
             HttpContext.Session.SetString("TelefoneCliente", cliente.Telefone);
             HttpContext.Session.SetString("IdCliente", cliente.Id_Cliente.ToString());
-
-            HttpContext.Session.SetString("Adicionar", cliente.Adicionar.ToString());
-            HttpContext.Session.SetString("Editar", cliente.Editar.ToString());
-            HttpContext.Session.SetString("Excluir", cliente.Deletar.ToString());
         }
     }
 }
